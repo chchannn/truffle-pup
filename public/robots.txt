@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chchannn.github.io/truffle-pup/sitemap-index.xml
