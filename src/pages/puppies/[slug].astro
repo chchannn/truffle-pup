@@ -13,6 +13,8 @@ export async function getStaticPaths() {
 
 const { puppy } = Astro.props;
 const { Content } = await render(puppy);
+const base = import.meta.env.BASE_URL;
+const resolveImg = (src: string) => src.startsWith(base) ? src : `${base.replace(/\/$/, '')}${src.startsWith('/') ? src : '/' + src}`;
 
 const birthFormatted = puppy.data.birthDate.toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric',
@@ -49,7 +51,7 @@ const statusColors = {
   <section class="section">
     <div class="content">
       <div class="puppy-main-image">
-        <img src={puppy.data.image} alt={`${puppy.data.name} - Lagotto Romagnolo`} />
+        <img src={resolveImg(puppy.data.image)} alt={`${puppy.data.name} - Lagotto Romagnolo`} />
       </div>
 
       <div class="details">
@@ -62,7 +64,7 @@ const statusColors = {
       {puppy.data.gallery.length > 0 && (
         <div class="gallery">
           {puppy.data.gallery.map((img: string) => (
-            <img src={img} alt={`${puppy.data.name} photo`} loading="lazy" />
+            <img src={resolveImg(img)} alt={`${puppy.data.name} photo`} loading="lazy" />
           ))}
         </div>
       )}
@@ -74,7 +76,7 @@ const statusColors = {
       {puppy.data.status === 'available' && (
         <div class="inquiry-cta">
           <p>Interested in {puppy.data.name}?</p>
-          <a href={`mailto:leave117@gmail.com?subject=Inquiry about ${puppy.data.name}`} class="btn btn-primary">
+          <a href={`mailto:bravolagottopnw@gmail.com?subject=Inquiry about ${puppy.data.name}`} class="btn btn-primary">
             Send Inquiry
           </a>
         </div>

@@ -4,9 +4,10 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container footer-inner">
-    <p class="footer-brand">Truffle Pup</p>
+    <p class="footer-brand">Lagotto Romagnolo PNW</p>
     <p class="footer-tagline">Lagotto Romagnolo Breeder & Training Resource</p>
-    <p class="footer-copy">&copy; {year} Truffle Pup. All rights reserved.</p>
+    <p class="footer-social"><a href="https://instagram.com/lagotto_puppylove" target="_blank" rel="noopener noreferrer">@lagotto_puppylove</a></p>
+    <p class="footer-copy">&copy; {year} Lagotto Romagnolo PNW. All rights reserved.</p>
   </div>
 </footer>
 
@@ -29,6 +30,19 @@ const year = new Date().getFullYear();
     font-size: 0.9rem;
     opacity: 0.8;
     margin-bottom: 1rem;
+  }
+
+  .footer-social {
+    margin-bottom: 1rem;
+  }
+
+  .footer-social a {
+    color: var(--color-terracotta-light);
+    font-size: 0.9rem;
+  }
+
+  .footer-social a:hover {
+    color: var(--color-cream);
   }
 
   .footer-copy {

@@ -3,8 +3,8 @@ name: "Luna"
 date: 2026-02-01
 status: available
 sex: female
-color: "white & orange"
-image: "/images/puppies/placeholder.jpg"
+color: "white & brown"
+image: "/images/puppies/ron_girl.jpg"
 gallery: []
 birthDate: 2026-01-10
 ---

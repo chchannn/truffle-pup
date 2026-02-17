@@ -21,7 +21,7 @@ const latestPosts = allPosts
   <JsonLd data={{
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Truffle Pup",
+    "name": "Lagotto Romagnolo PNW",
     "description": "Lagotto Romagnolo breeder and training resource.",
     "url": Astro.site,
   }} />
@@ -74,7 +74,7 @@ const latestPosts = allPosts
   {latestPosts.length > 0 && (
     <section class="section section-alt">
       <div class="container">
-        <h2 class="section-title">Training & Tips</h2>
+        <h2 class="section-title">From Our Blog</h2>
         <div class="grid grid-3">
           {latestPosts.map(post => (
             <BlogCard
@@ -95,7 +95,7 @@ const latestPosts = allPosts
   <!-- CTA -->
   <section class="section cta-section">
     <div class="container" style="text-align: center;">
-      <h2>Interested in a Truffle Pup?</h2>
+      <h2>Interested in a Lagotto Romagnolo PNW?</h2>
       <p>We'd love to hear from you. Reach out to learn about upcoming litters and availability.</p>
       <a href="/truffle-pup/contact" class="btn btn-primary">Get in Touch</a>
     </div>

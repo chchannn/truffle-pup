@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { name, image, status, sex, color, slug } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const imgSrc = image.startsWith(base) ? image : `${base.replace(/\/$/, '')}${image.startsWith('/') ? image : '/' + image}`;
 
 const statusColors = {
   available: 'var(--color-olive)',
@@ -19,7 +21,7 @@ const statusColors = {
 
 <a href={`/truffle-pup/puppies/${slug}`} class="puppy-card">
   <div class="puppy-image">
-    <img src={image} alt={`${name} - ${color} Lagotto Romagnolo`} loading="lazy" />
+    <img src={imgSrc} alt={`${name} - ${color} Lagotto Romagnolo`} loading="lazy" />
     <span class="status-badge" style={`background: ${statusColors[status]}`}>
       {status}
     </span>
