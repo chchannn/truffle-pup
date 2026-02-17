@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Blog"
+  description="Training tips, breed information, and updates about our Lagotto Romagnolo puppies."
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Training tips, breed insights, and life with Lagotto Romagnoli.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {posts.length > 0 ? (
+        <div class="grid grid-3">
+          {posts.map(post => (
+            <BlogCard
+              title={post.data.title}
+              excerpt={post.data.excerpt}
+              date={post.data.date}
+              slug={post.id}
+              image={post.data.image}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty-state">No posts yet. Check back soon!</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 { color: var(--color-cream); }
+  .page-header p { opacity: 0.9; margin-top: 0.5rem; }
+
+  .section { padding: 4rem 0; }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .empty-state {
+    text-align: center;
+    color: var(--color-text-light);
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const puppies = await getCollection('puppies');
+  return puppies.map(puppy => ({
+    params: { slug: puppy.id },
+    props: { puppy },
+  }));
+}
+
+const { puppy } = Astro.props;
+const { Content } = await render(puppy);
+
+const birthFormatted = puppy.data.birthDate.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const statusColors = {
+  available: 'var(--color-olive)',
+  reserved: 'var(--color-terracotta)',
+  sold: 'var(--color-text-light)',
+};
+---
+
+<BaseLayout
+  title={puppy.data.name}
+  description={`${puppy.data.name} - ${puppy.data.color} ${puppy.data.sex} Lagotto Romagnolo puppy. ${puppy.data.status}.`}
+  image={puppy.data.image}
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>{puppy.data.name}</h1>
+      <span class="status" style={`background: ${statusColors[puppy.data.status]}`}>
+        {puppy.data.status}
+      </span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <div class="puppy-main-image">
+        <img src={puppy.data.image} alt={`${puppy.data.name} - Lagotto Romagnolo`} />
+      </div>
+
+      <div class="details">
+        <div class="detail"><strong>Sex:</strong> {puppy.data.sex}</div>
+        <div class="detail"><strong>Color:</strong> {puppy.data.color}</div>
+        <div class="detail"><strong>Born:</strong> {birthFormatted}</div>
+        <div class="detail"><strong>Status:</strong> {puppy.data.status}</div>
+      </div>
+
+      {puppy.data.gallery.length > 0 && (
+        <div class="gallery">
+          {puppy.data.gallery.map((img: string) => (
+            <img src={img} alt={`${puppy.data.name} photo`} loading="lazy" />
+          ))}
+        </div>
+      )}
+
+      <div class="puppy-description">
+        <Content />
+      </div>
+
+      {puppy.data.status === 'available' && (
+        <div class="inquiry-cta">
+          <p>Interested in {puppy.data.name}?</p>
+          <a href={`mailto:leave117@gmail.com?subject=Inquiry about ${puppy.data.name}`} class="btn btn-primary">
+            Send Inquiry
+          </a>
+        </div>
+      )}
+
+      <a href="/truffle-pup/puppies" class="back-link">&larr; Back to all puppies</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 { color: var(--color-cream); margin-bottom: 0.75rem; }
+
+  .status {
+    display: inline-block;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    text-transform: capitalize;
+  }
+
+  .section { padding: 4rem 0; }
+
+  .puppy-main-image {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-white);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .detail {
+    font-size: 0.95rem;
+    text-transform: capitalize;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .gallery img {
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .puppy-description {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+  }
+
+  .inquiry-cta {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-white);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .inquiry-cta p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-terracotta);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+
+  .btn-primary:hover { background: var(--color-terracotta-light); color: white; }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .details { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
+  }
+</style>
