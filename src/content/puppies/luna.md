@@ -6,7 +6,7 @@ sex: female
 color: "white & brown"
 image: "/images/puppies/ron_girl.jpg"
 gallery: []
-birthDate: 2026-01-10
+birthDate: 2025-08-17
 ---
 
 Luna is a playful and curious girl with a gentle temperament. She loves exploring and is already showing interest in scent work.

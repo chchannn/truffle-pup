@@ -12,7 +12,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <header class="header">
   <div class="container header-inner">
-    <a href="/" class="logo">Lagotto Romagnolo PNW</a>
+    <a href="/" class="logo">
+      <img src="/images/logo.png" alt="" class="logo-icon" />
+      Lagotto Romagnolo PNW
+    </a>
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -53,6 +56,16 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     font-size: 1.5rem;
     color: var(--color-brown);
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   .logo:hover { color: var(--color-terracotta); }
