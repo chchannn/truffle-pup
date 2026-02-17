@@ -1,0 +1,99 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  date: Date;
+  slug: string;
+  image?: string;
+  tags?: string[];
+}
+
+const { title, excerpt, date, slug, image, tags = [] } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a href={`/truffle-pup/blog/${slug}`} class="blog-card">
+  {image && (
+    <div class="blog-image">
+      <img src={image} alt={title} loading="lazy" />
+    </div>
+  )}
+  <div class="blog-info">
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+    <h3>{title}</h3>
+    <p>{excerpt}</p>
+    {tags.length > 0 && (
+      <div class="tags">
+        {tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+    )}
+  </div>
+</a>
+
+<style>
+  .blog-card {
+    display: block;
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(92, 61, 46, 0.12);
+  }
+
+  .blog-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-info {
+    padding: 1.25rem;
+  }
+
+  .blog-info time {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+  }
+
+  .blog-info h3 {
+    font-size: 1.15rem;
+    margin: 0.5rem 0;
+  }
+
+  .blog-info p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    background: var(--color-cream);
+    color: var(--color-olive);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+</style>

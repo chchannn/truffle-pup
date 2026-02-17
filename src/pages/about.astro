@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about our Lagotto Romagnolo breeding program, our philosophy, and our commitment to raising healthy puppies."
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>About Truffle Pup</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <h2>Our Story</h2>
+      <p>
+        We are a small, family-based Lagotto Romagnolo breeder dedicated to preserving the breed's
+        wonderful characteristics — their intelligence, loyalty, and gentle nature.
+      </p>
+      <p>
+        Our dogs are raised in our home as part of the family. Every puppy receives early
+        socialization, exposure to various environments, and the foundation for a well-adjusted life
+        with their new families.
+      </p>
+
+      <h2>Our Philosophy</h2>
+      <p>
+        We believe in quality over quantity. Our breeding decisions are guided by health, temperament,
+        and breed standard. Every parent is health-tested, and we stand behind the puppies we produce.
+      </p>
+
+      <h2>Health Testing</h2>
+      <p>
+        All our breeding dogs undergo comprehensive health testing including hip and elbow evaluations,
+        eye examinations, and genetic testing for breed-specific conditions. We are committed to
+        producing the healthiest puppies possible.
+      </p>
+
+      <h2>Why Lagotto Romagnolo?</h2>
+      <p>
+        The Lagotto Romagnolo is a remarkable breed — originally bred as a water retriever in Italy,
+        they became famous as truffle hunters. Today, they make exceptional family companions.
+        Their hypoallergenic, curly coat and moderate size make them well-suited for many lifestyles.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    color: var(--color-cream);
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .content h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .content h2:first-child {
+    margin-top: 0;
+  }
+
+  .content p {
+    margin-bottom: 1rem;
+    color: var(--color-text-light);
+  }
+</style>

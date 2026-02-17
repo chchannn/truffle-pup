@@ -1,0 +1,87 @@
+---
+interface Props {
+  name: string;
+  image: string;
+  status: 'available' | 'reserved' | 'sold';
+  sex: string;
+  color: string;
+  slug: string;
+}
+
+const { name, image, status, sex, color, slug } = Astro.props;
+
+const statusColors = {
+  available: 'var(--color-olive)',
+  reserved: 'var(--color-terracotta)',
+  sold: 'var(--color-text-light)',
+};
+---
+
+<a href={`/truffle-pup/puppies/${slug}`} class="puppy-card">
+  <div class="puppy-image">
+    <img src={image} alt={`${name} - ${color} Lagotto Romagnolo`} loading="lazy" />
+    <span class="status-badge" style={`background: ${statusColors[status]}`}>
+      {status}
+    </span>
+  </div>
+  <div class="puppy-info">
+    <h3>{name}</h3>
+    <p>{sex} &middot; {color}</p>
+  </div>
+</a>
+
+<style>
+  .puppy-card {
+    display: block;
+    background: var(--color-white);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .puppy-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(92, 61, 46, 0.12);
+  }
+
+  .puppy-image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .puppy-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .status-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    text-transform: capitalize;
+  }
+
+  .puppy-info {
+    padding: 1rem;
+  }
+
+  .puppy-info h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .puppy-info p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    text-transform: capitalize;
+  }
+</style>

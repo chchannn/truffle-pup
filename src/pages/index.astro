@@ -1,7 +1,205 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PuppyCard from '../components/PuppyCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPuppies = await getCollection('puppies');
+const featuredPuppies = allPuppies
+  .filter(p => p.data.status === 'available')
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Home">
-  <h1>Coming soon</h1>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Lagotto Romagnolo Puppies</h1>
+      <p>Raised with love in a family environment. Bred for health, temperament, and the joy they bring.</p>
+      <div class="hero-cta">
+        <a href="/truffle-pup/puppies" class="btn btn-primary">Meet Our Puppies</a>
+        <a href="/truffle-pup/contact" class="btn btn-secondary">Inquire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breed Intro -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">The Lagotto Romagnolo</h2>
+      <p class="section-intro">
+        Italy's truffle-hunting water dog — intelligent, affectionate, and hypoallergenic.
+        Lagotti are loyal companions with a natural love for learning and an irresistible curly coat.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Puppies -->
+  {featuredPuppies.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Available Puppies</h2>
+        <div class="grid grid-3">
+          {featuredPuppies.map(puppy => (
+            <PuppyCard
+              name={puppy.data.name}
+              image={puppy.data.image}
+              status={puppy.data.status}
+              sex={puppy.data.sex}
+              color={puppy.data.color}
+              slug={puppy.id}
+            />
+          ))}
+        </div>
+        <p class="section-cta"><a href="/truffle-pup/puppies">View all puppies &rarr;</a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- Latest Blog Posts -->
+  {latestPosts.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Training & Tips</h2>
+        <div class="grid grid-3">
+          {latestPosts.map(post => (
+            <BlogCard
+              title={post.data.title}
+              excerpt={post.data.excerpt}
+              date={post.data.date}
+              slug={post.id}
+              image={post.data.image}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+        <p class="section-cta"><a href="/truffle-pup/blog">Read more articles &rarr;</a></p>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container" style="text-align: center;">
+      <h2>Interested in a Truffle Pup?</h2>
+      <p>We'd love to hear from you. Reach out to learn about upcoming litters and availability.</p>
+      <a href="/truffle-pup/contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 6rem 0 5rem;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-cream);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-primary {
+    background: var(--color-terracotta);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--color-terracotta-light); color: white; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-cream);
+    border: 2px solid var(--color-cream);
+  }
+
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); color: var(--color-cream); }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .section-alt {
+    background: var(--color-white);
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+  }
+
+  .section-cta {
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 500;
+  }
+
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .cta-section {
+    padding: 4rem 0;
+  }
+
+  .cta-section h2 { margin-bottom: 0.75rem; }
+  .cta-section p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
