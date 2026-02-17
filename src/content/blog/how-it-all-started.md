@@ -40,13 +40,13 @@ When I told her what I'd been carrying all these years, she didn't miss a beat. 
 
 She made the introduction. And just like that, a 30-year-old dream had a heartbeat.
 
-![A Lagotto Romagnolo eyeing a freshly found truffle](/truffle-pup/images/blog/truffle.jpeg)
+![A Lagotto Romagnolo eyeing a freshly found truffle](/images/blog/truffle.jpeg)
 
 ## Three Puppies Across the Ocean
 
 I bought three puppies from the truffle hunter. Convinced a dear friend to help me navigate the paperwork, the flights, the logistics of getting three tiny Italian dogs across the Atlantic. It was a production, to put it mildly.
 
-![Packed up and ready to fly three puppies home from Italy](/truffle-pup/images/blog/airport.jpeg)
+![Packed up and ready to fly three puppies home from Italy](/images/blog/airport.jpeg)
 
 But when they arrived — when those three curly, wiggly, bright-eyed puppies hit the grass on my farm for the first time — everything clicked. Noses down, tails up, already exploring like they'd been here in a past life. Already home.
 

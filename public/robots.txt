@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chchannn.github.io/truffle-pup/sitemap-index.xml
+Sitemap: https://lagottoromagnolopnw.com/sitemap-index.xml

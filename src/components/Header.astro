@@ -1,10 +1,10 @@
 ---
 const navLinks = [
-  { href: '/truffle-pup/', label: 'Home' },
-  { href: '/truffle-pup/about', label: 'About' },
-  { href: '/truffle-pup/puppies', label: 'Puppies' },
-  { href: '/truffle-pup/blog', label: 'Blog' },
-  { href: '/truffle-pup/contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/puppies', label: 'Puppies' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 <header class="header">
   <div class="container header-inner">
-    <a href="/truffle-pup/" class="logo">Lagotto Romagnolo PNW</a>
+    <a href="/" class="logo">Lagotto Romagnolo PNW</a>
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span>
       <span></span>
@@ -22,7 +22,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       {navLinks.map(link => (
         <a
           href={link.href}
-          class:list={['nav-link', { active: currentPath === link.href.replace(/\/$/, '') || (link.href !== '/truffle-pup/' && currentPath.startsWith(link.href)) }]}
+          class:list={['nav-link', { active: currentPath === link.href.replace(/\/$/, '') || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
         >
           {link.label}
         </a>
