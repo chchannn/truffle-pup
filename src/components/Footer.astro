@@ -1,0 +1,38 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-brand">Truffle Pup</p>
+    <p class="footer-tagline">Lagotto Romagnolo Breeder & Training Resource</p>
+    <p class="footer-copy">&copy; {year} Truffle Pup. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+</style>
