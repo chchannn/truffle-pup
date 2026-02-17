@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -24,6 +25,14 @@ const formattedDate = post.data.date.toLocaleDateString('en-US', {
   image={post.data.image}
   type="article"
 >
+  <JsonLd data={{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.data.title,
+    "description": post.data.excerpt,
+    "datePublished": post.data.date.toISOString(),
+    "author": { "@type": "Organization", "name": "Truffle Pup" },
+  }} />
   <article>
     <section class="page-header">
       <div class="container">

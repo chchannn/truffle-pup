@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -29,6 +30,13 @@ const statusColors = {
   description={`${puppy.data.name} - ${puppy.data.color} ${puppy.data.sex} Lagotto Romagnolo puppy. ${puppy.data.status}.`}
   image={puppy.data.image}
 >
+  <JsonLd data={{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${puppy.data.name} - Lagotto Romagnolo Puppy`,
+    "description": `${puppy.data.color} ${puppy.data.sex} Lagotto Romagnolo puppy.`,
+    "image": puppy.data.image,
+  }} />
   <section class="page-header">
     <div class="container">
       <h1>{puppy.data.name}</h1>

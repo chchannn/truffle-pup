@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch about our Lagotto Romagnolo puppies. We'd love to hear from you."
+>
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Interested in our puppies or have questions? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="content">
+      <div class="contact-card">
+        <h2>Get in Touch</h2>
+        <p>
+          Whether you're interested in one of our available puppies, have questions about the breed,
+          or want to learn about upcoming litters, don't hesitate to reach out.
+        </p>
+        <a href="mailto:leave117@gmail.com?subject=Puppy Inquiry" class="btn btn-primary">
+          Email Us
+        </a>
+        <p class="email-direct">
+          Or email directly: <a href="mailto:leave117@gmail.com">leave117@gmail.com</a>
+        </p>
+      </div>
+
+      <div class="info-section">
+        <h2>What to Include</h2>
+        <ul>
+          <li>A bit about yourself and your household</li>
+          <li>Your experience with dogs</li>
+          <li>What you're looking for in a Lagotto</li>
+          <li>Any questions you have about the breed or our program</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 { color: var(--color-cream); }
+  .page-header p { opacity: 0.9; margin-top: 0.5rem; }
+
+  .section { padding: 4rem 0; }
+
+  .contact-card {
+    background: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .contact-card h2 { margin-bottom: 1rem; }
+
+  .contact-card p {
+    color: var(--color-text-light);
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-terracotta);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .btn-primary:hover { background: var(--color-terracotta-light); color: white; }
+
+  .email-direct {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .info-section {
+    background: var(--color-white);
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+  }
+
+  .info-section h2 { margin-bottom: 1rem; }
+
+  .info-section ul {
+    padding-left: 1.25rem;
+    color: var(--color-text-light);
+  }
+
+  .info-section li {
+    margin-bottom: 0.5rem;
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import PuppyCard from '../components/PuppyCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import { getCollection } from 'astro:content';
@@ -17,6 +18,13 @@ const latestPosts = allPosts
 ---
 
 <BaseLayout title="Home">
+  <JsonLd data={{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Truffle Pup",
+    "description": "Lagotto Romagnolo breeder and training resource.",
+    "url": Astro.site,
+  }} />
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-content">
