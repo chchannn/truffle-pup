@@ -2,6 +2,7 @@
 title: "Housebreaking Your Lagotto: A Survival Guide for Your Floors"
 date: 2025-02-16
 tags: ["training", "puppies", "housebreaking"]
+image: "/images/blog/sofie2.JPG"
 excerpt: "Your Lagotto is brilliant — they can find truffles underground. Surely they can figure out where to pee. Here's how to help them get there."
 ---
 
